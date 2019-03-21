@@ -71,3 +71,61 @@ replace what is in the `{}` after the keyboard name, so
 ```
 
 is what it should look like. The new data can be found in `src/msx.txt`
+
+## Software
+
+there are 2 peices of software that I made for this project, the AVR code, and the Macro Processing code
+
+### AVR code
+
+the AVR code is what runs on the arduino, it:
+
+1. Scans through every key on the keyboard, and reports any changes over Serial
+
+2. Reads for macros from Serial, and executes them
+
+it also does other data processing and I/O
+
+#### Instructions and Formats
+
+Keyboard I/O:
+
+there are 4 Outputs, and 8 Inputs.
+The outputs say a row ID (0 - 8) for the button matrix processor to look at.
+The inputs are what keys are pressed on the row.
+
+Scematic for keys and ID's can be found on the Omega page, linked earlier
+
+Serial data sent out of the Arduino consists of a `p` or `r` (press or release) followed by 2 hexadecimal characters for the key ID. It ends with a newline character
+
+Serial Input:
+
+`m...\n`: the rest of the instruction until the newline is treated as a macro to execute
+
+`nr\n`: returns the name of the keyboard over serial, prepended with `n` to say it's a name
+
+`nw...\n`: the rest of the instruction until the newline is treated as the new name for the keyboard
+
+Macro format:
+
+`pXX`: press usb key with code XX (XX is in hexadecimal)
+
+`rXX`: release usb key with code XX
+
+`tXX`: press and release usb key with code XX
+, 
+`d####`: delay for #### ms (#### is in decimal)
+
+### PC Software
+
+It starts by scanning all of the open ports for anything starting with `/dev/ttyUSB`, `/dev/ttyACM`, or `COM`.
+
+Then it polls every one with `nr\n` ("nr" followed by a newline) and looks for any responce for the next 50ms.
+
+if it responds with something starting with an `n`, it displays the port.
+
+When the user clicks on one of the ports, it starts reading the macros from the `keyboards.json` file, creating an empty entry if one doesn't exist.
+
+There are some other buttons you can click in the keyboard menu, mainly changing some values.
+
+When the program recieves Serial data while in the keyboard menu, it responds with the appropriate macro.
