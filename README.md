@@ -54,7 +54,7 @@ Keyboard pin 16 -> Arduino GND
 
 ### Project Source
 
-you can download the source by clicking "download" -> "download as zip" and extracting the zip into your downloads folder. The source is in a folder called "src"
+you can download the source by clicking "Clone or Download" -> "Download Zip" and extracting the zip into your downloads folder. The source is in a folder called "src"
 
 ### Replacing Macro Data
 
