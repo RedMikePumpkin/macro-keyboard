@@ -12,7 +12,7 @@ The keyboard used is from Sergey Kiselev's Omega, which you can find [here](http
 
 ### Keycap Layout
 
-![look at text version](https://raw.githubusercontent.com/RedMikePumpkin/macro-keyboard/master/layout.png)
+![](https://raw.githubusercontent.com/RedMikePumpkin/macro-keyboard/master/IMG_20190320_204334015.jpg)
 
 ```
 Esc F1 F2 F3 F4 F5
